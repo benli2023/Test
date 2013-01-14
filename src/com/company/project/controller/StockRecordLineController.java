@@ -57,20 +57,20 @@ import com.company.project.vo.query.*;
  */
 
 @Controller
-@RequestMapping("/people")
-public class PeopleController extends BaseRestSpringController<People,java.lang.Integer>{
+@RequestMapping("/stockrecordline")
+public class StockRecordLineController extends BaseRestSpringController<StockRecordLine,java.lang.Long>{
 	//默认多列排序,example: username desc,createTime asc
 	protected static final String DEFAULT_SORT_COLUMNS = null; 
 	
-	private PeopleManager peopleManager;
+	private StockRecordLineManager stockRecordLineManager;
 	
-	private final String LIST_ACTION = "redirect:/people";
+	private final String LIST_ACTION = "redirect:/stockrecordline";
 	
 	/** 
 	 * 增加setXXXX()方法,spring就可以通过autowire自动设置对象属性,注意大小写
 	 **/
-	public void setPeopleManager(PeopleManager manager) {
-		this.peopleManager = manager;
+	public void setStockRecordLineManager(StockRecordLineManager manager) {
+		this.stockRecordLineManager = manager;
 	}
 	
 	/** binder用于bean属性的设置 */
@@ -89,73 +89,73 @@ public class PeopleController extends BaseRestSpringController<People,java.lang.
 	
 	/** 列表 */
 	@RequestMapping
-	public String index(ModelMap model,PeopleQuery query,HttpServletRequest request,HttpServletResponse response) {
-		Page page = this.peopleManager.findPage(query);
+	public String index(ModelMap model,StockRecordLineQuery query,HttpServletRequest request,HttpServletResponse response) {
+		Page page = this.stockRecordLineManager.findPage(query);
 		
 		model.addAllAttributes(toModelMap(page, query));
-		return "/people/index";
+		return "/stockrecordline/index";
 	}
 	
 	/** 显示 */
 	@RequestMapping(value="/{id}")
-	public String show(ModelMap model,@PathVariable java.lang.Integer id) throws Exception {
-		People people = (People)peopleManager.getById(id);
-		model.addAttribute("people",people);
-		return "/people/show";
+	public String show(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
+		StockRecordLine stockRecordLine = (StockRecordLine)stockRecordLineManager.getById(id);
+		model.addAttribute("stockRecordLine",stockRecordLine);
+		return "/stockrecordline/show";
 	}
 
 	/** 进入新增 */
 	@RequestMapping(value="/new")
-	public String _new(ModelMap model,People people,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		model.addAttribute("people",people);
-		return "/people/new";
+	public String _new(ModelMap model,StockRecordLine stockRecordLine,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		model.addAttribute("stockRecordLine",stockRecordLine);
+		return "/stockrecordline/new";
 	}
 	
 	/** 保存新增,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
 	@RequestMapping(method=RequestMethod.POST)
-	public String create(ModelMap model,@Valid People people,BindingResult errors,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public String create(ModelMap model,@Valid StockRecordLine stockRecordLine,BindingResult errors,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		if(errors.hasErrors()) {
-			return  "/people/new";
+			return  "/stockrecordline/new";
 		}
 		
-		peopleManager.save(people);
+		stockRecordLineManager.save(stockRecordLine);
 		Flash.current().success(CREATED_SUCCESS); //存放在Flash中的数据,在下一次http请求中仍然可以读取数据,error()用于显示错误消息
 		return LIST_ACTION;
 	}
 	
 	/** 编辑 */
 	@RequestMapping(value="/{id}/edit")
-	public String edit(ModelMap model,@PathVariable java.lang.Integer id) throws Exception {
-		People people = (People)peopleManager.getById(id);
-		model.addAttribute("people",people);
-		return "/people/edit";
+	public String edit(ModelMap model,@PathVariable java.lang.Long id) throws Exception {
+		StockRecordLine stockRecordLine = (StockRecordLine)stockRecordLineManager.getById(id);
+		model.addAttribute("stockRecordLine",stockRecordLine);
+		return "/stockrecordline/edit";
 	}
 	
 	/** 保存更新,@Valid标注spirng在绑定对象时自动为我们验证对象属性并存放errors在BindingResult  */
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-	public String update(ModelMap model,@PathVariable java.lang.Integer id,@Valid People people,BindingResult errors,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public String update(ModelMap model,@PathVariable java.lang.Long id,@Valid StockRecordLine stockRecordLine,BindingResult errors,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		if(errors.hasErrors()) {
-			return "/people/edit";
+			return "/stockrecordline/edit";
 		}
 		
-		peopleManager.update(people);
+		stockRecordLineManager.update(stockRecordLine);
 		Flash.current().success(UPDATE_SUCCESS);
 		return LIST_ACTION;
 	}
 	
 	/** 删除 */
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public String delete(ModelMap model,@PathVariable java.lang.Integer id) {
-		peopleManager.removeById(id);
+	public String delete(ModelMap model,@PathVariable java.lang.Long id) {
+		stockRecordLineManager.removeById(id);
 		Flash.current().success(DELETE_SUCCESS);
 		return LIST_ACTION;
 	}
 
 	/** 批量删除 */
 	@RequestMapping(method=RequestMethod.DELETE)
-	public String batchDelete(ModelMap model,@RequestParam("items") java.lang.Integer[] items) {
+	public String batchDelete(ModelMap model,@RequestParam("items") java.lang.Long[] items) {
 		for(int i = 0; i < items.length; i++) {
-			peopleManager.removeById(items[i]);
+			stockRecordLineManager.removeById(items[i]);
 		}
 		Flash.current().success(DELETE_SUCCESS);
 		return LIST_ACTION;
