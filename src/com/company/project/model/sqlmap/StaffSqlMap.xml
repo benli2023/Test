@@ -182,9 +182,6 @@
 		       <isNotEmpty prepend="AND" property="adminId">
 		             adminId = #adminId#
 		       </isNotEmpty>
-		          <isNotEmpty prepend="AND" property="searchTerm">
-		            (staff_name  like  '%$searchTerm$%' or login_name like  '%$searchTerm$%' or email like  '%$searchTerm$%')
-		       </isNotEmpty>
 	    </dynamic>	
 	</sql>
 	 
