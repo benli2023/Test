@@ -21,6 +21,7 @@
 		原来的sql: select * from user where birth_date = ? and username = ? and age > ?
 		转换后sql: select * from user where birth_date = to_date('2010-08-13','yyyy-mm-dd') and username = 'badqiu' and age > 20
 	 -->
+	 <!--  
 	<bean id="log4jdbcInterceptor" class="net.sf.log4jdbc.DataSourceSpyInterceptor" />
     <bean id="dataSourceLog4jdbcAutoProxyCreator" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
        <property name="interceptorNames">
@@ -34,7 +35,7 @@
            </list>
        </property>
     </bean>
-
+	-->
     	
 	<!-- 
     <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
