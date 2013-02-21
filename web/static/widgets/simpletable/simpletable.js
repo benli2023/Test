@@ -10,7 +10,7 @@ var SimpleTable = function(formId,pageNumber,pageSize,sortColumns,pageNumberKey,
 	this.pageNumberKey = pageNumberKey || 'pageNumber';
 	this.pageSizeKey = pageSizeKey || 'pageSize';
 	this.sortColumnsKey = sortColumnsKey || 'sortColumns';
-	
+	$=jQuery;
 	//handle sort
 	_this = this;
 	$("#"+formId+" .gridBody th[sortColumn]").click(function() {
