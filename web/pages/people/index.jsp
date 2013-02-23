@@ -13,7 +13,7 @@
 	<script type="text/javascript" src="<c:url value="/widgets/simpletable/simpletable.js"/>"></script>
 	
 	<script type="text/javascript" >
-		$(document).ready(function() {
+		jQuery(document).ready(function() {
 			// 分页需要依赖的初始化动作
 			window.simpleTable = new SimpleTable('queryForm',${page.thisPageNumber},${page.pageSize},'${pageRequest.sortColumns}');
 		});
@@ -21,6 +21,56 @@
 </rapid:override>
 
 <rapid:override name="content">
+
+
+
+	<form class="form-horizontal"  id="queryForm" name="queryForm" method="get" >
+		<fieldset>
+			<legend>搜索</legend>
+			
+			 <div class="control-group">
+			 	<label  class="control-label" for="name"><%=People.ALIAS_NAME%></label> 
+				 <div class="controls">
+					<input type="text" id="name"  placeholder="<%=People.ALIAS_NAME%>" value="${query.name}" id="name" name="name" ><!-- <span class="help-inline">Exampleblock-level help text here.</span>  -->
+					
+				 </div>
+			 </div>
+			 <div class="control-group">
+			 	<label  class="control-label" for="age"><%=People.ALIAS_AGE%></label> 
+				 <div class="controls">
+					<input type="text" id="age"  placeholder="<%=People.ALIAS_AGE%>" value="${query.age}" id="age" name="age" ><!-- <span class="help-inline">Exampleblock-level help text here.</span>  -->
+					
+				 </div>
+			 </div>
+			  <div class="control-group">
+			 	<label  class="control-label" for="recordDateBegin"><%=People.ALIAS_RECORD_DATE%></label> 
+				 <div class="controls">
+				 	<input  type="text"  class="input-medium" value="<fmt:formatDate value='${query.recordDateBegin}' pattern='<%=People.FORMAT_RECORD_DATE%>'/>"  id="recordDateBegin" name="recordDateBegin"   />
+				 	<input  type="text"  class="input-medium" value="<fmt:formatDate value='${query.recordDateEnd}' pattern='<%=People.FORMAT_RECORD_DATE%>'/>"  id="recordDateEnd" name="recordDateEnd"   />
+				 
+					<!-- <span class="help-inline">Exampleblock-level help text here.</span>  -->
+					
+				 </div>
+			 </div>
+			 
+			 <div class="control-group">
+				 	 <div class="controls">
+						<!--  <label class="checkbox"><input type="checkbox"> Check me out </label>-->
+						<input type="submit" class="btn btn-primary" onclick="getReferenceForm(this).action='${ctx}/people'" value="查询"></input>
+						<input type="button" class="btn btn-success"  onclick="window.location = '${ctx}/people/new'" value="新增"></input>
+						<input type="button" class="btn btn-danger"  onclick="doRestBatchDelete('${ctx}/people','items',document.forms.queryForm)" value="删除"></input>
+					</div>
+				</div>	
+		</fieldset>
+	
+		<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery( "#recordDateBegin" ).datepicker({dateFormat: 'yy-mm-dd'});
+			jQuery( "#recordDateEnd" ).datepicker({dateFormat: 'yy-mm-dd'});
+		 });
+		</script>
+
+<!-- 
 	<form id="queryForm" name="queryForm" method="get" style="display: inline;">
 	<div class="queryPanel">
 		<fieldset>
@@ -50,11 +100,11 @@
 		<div>
 	
 	</div>
+	 -->
 	
 	<div class="gridTable">
 	
 		<simpletable:pageToolbar page="${page}">
-		显示在这里是为了提示你如何自定义表头,可修改模板删除此行
 		</simpletable:pageToolbar>
 	
 		<table width="100%"  border="0" cellspacing="0" class="gridBody">
@@ -100,7 +150,9 @@
 		
 	</div>
 	</form>
+	
+
 </rapid:override>
 
-<%-- jsp模板继承,具体使用请查看: http://code.google.com/p/rapid-framework/wiki/rapid_jsp_extends --%>
+
 <%@ include file="base.jsp" %>
