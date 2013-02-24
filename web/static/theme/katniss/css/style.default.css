@@ -22,8 +22,9 @@
 @import url('jquery.chosen.css');
 @import url('fullcalendar.css');
 @import url('font-awesome-ie7.css');
+/*
 @import url('../fonts/roboto.css');
-
+*/
 
 /***** RESET BROWSER STYLES *****/
 /********************************/
@@ -54,7 +55,7 @@ img { display: block; }
 small { font-size: 11px; line-height: 18px; }
 pre { font-size: 11px; }
 
-input,select,textarea,button,label { color: #666; font-family: 'HelveticaNeue', Arial, sans-serif; font-size: 12px; outline: none; margin: 0; }
+input,select,textarea,button,label { color: #666; font-family: '宋体', Arial, sans-serif; font-size: 12px; outline: none; margin: 0; }
 
 h1,h2,h3,h4 { color: #333; font-weight: normal; }
 h1 { font-size: 28px; line-height: 38px; }
@@ -269,7 +270,7 @@ ul.list-nostyle li span, ol.list-nostyle li span { vertical-align: top; }
 /***** FORM STYLES *****/
 /***********************/
 
-.stdform input { padding: 7px 5px; border: 1px solid #bbb; }
+.stdform input { /*padding: 7px 5px;*/ border: 1px solid #bbb; }
 .stdform textarea { padding: 6px 5px; border: 1px solid #bbb; }
 .stdform select { border: 1px solid #bbb; padding: 5px 2px; }
 .stdform p, .stdform div.par { margin: 20px 0; }

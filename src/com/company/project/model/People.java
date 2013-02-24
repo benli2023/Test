@@ -55,7 +55,7 @@ public class People extends BaseEntity implements java.io.Serializable {
      * personId       db_column: PersonId 
      */ 	
 	
-	private java.lang.Integer personId;
+	private java.lang.Long personId;
     /**
      * name       db_column: Name 
      */ 	
@@ -69,7 +69,6 @@ public class People extends BaseEntity implements java.io.Serializable {
     /**
      * recordDate       db_column: RecordDate 
      */ 	
-	@NotNull 
 	private java.util.Date recordDate;
 	//columns END
 
@@ -77,18 +76,20 @@ public class People extends BaseEntity implements java.io.Serializable {
 	}
 
 	public People(
-		java.lang.Integer personId
+		java.lang.Long personId
 	){
 		this.personId = personId;
 	}
 
-	public void setPersonId(java.lang.Integer value) {
-		this.personId = value;
-	}
 	
-	public java.lang.Integer getPersonId() {
-		return this.personId;
+	public java.lang.Long getPersonId() {
+		return personId;
 	}
+
+	public void setPersonId(java.lang.Long personId) {
+		this.personId = personId;
+	}
+
 	public void setName(java.lang.String value) {
 		this.name = value;
 	}

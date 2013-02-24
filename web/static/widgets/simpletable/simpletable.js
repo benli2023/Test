@@ -13,7 +13,7 @@ var SimpleTable = function(formId,pageNumber,pageSize,sortColumns,pageNumberKey,
 	$=jQuery;
 	//handle sort
 	_this = this;
-	$("#"+formId+" .gridBody th[sortColumn]").click(function() {
+	$("#"+formId+" .table th[sortColumn]").click(function() {
 		//handle click sort header
 		var column = $(this).attr('sortColumn');
 		if(SimpleTableUtils.getSortDirection(sortColumns,column) == 'asc') {
@@ -33,13 +33,13 @@ var SimpleTable = function(formId,pageNumber,pageSize,sortColumns,pageNumberKey,
 	var sortInfos = SimpleTableUtils.getSortInfos(sortColumns);
 	for(var i = 0; i < sortInfos.length; i++) {
 		var info = sortInfos[i];
-		var selector = "#"+formId+' .gridBody th[sortColumn="'+info.column+'"]';
+		var selector = "#"+formId+' .table th[sortColumn="'+info.column+'"]';
 		var order = info.order ? info.order : 'asc';
 		$(selector).addClass("sort " + order.toLowerCase());
 	}
 	
 	//handle highlight on mouseover
-	$("#"+formId+" .gridBody tbody tr").mouseover(function() {
+	$("#"+formId+" .table tbody tr").mouseover(function() {
 		$(this).toggleClass('highlight',true);
 	}).mouseout(function() {
 		$(this).toggleClass('highlight',false);

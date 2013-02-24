@@ -23,30 +23,30 @@
 }
 
 /** grid header sort */
-.gridBody th.sort {
+.table th.sort {
 }
-.gridBody th.sort.desc {
-	background:#c5c5c5 url(images/sort_desc.gif) center right no-repeat
+.table th.sort.desc {
+	background: url(images/sort_desc.gif) center right no-repeat
 }
-.gridBody th.sort.asc {
-	background:#c5c5c5 url(images/sort_asc.gif) center right no-repeat
+.table th.sort.asc {
+	background: url(images/sort_asc.gif) center right no-repeat
 }
 
 /** mouse hove over sort header */
-.gridBody .tableHeaderSortHover {
+.table .tableHeaderSortHover {
 	background-color: #f5f5f5 !important;
 	text-decoration: underline;
 	cursor: pointer;
 }
 
 /** gridBody row colors */
-.gridBody .odd {
+.table .odd {
 	background-color: #FFFFFF;
 }
-.gridBody .even {
+.table .even {
 	background-color: #F8F8F8;
 }
-.gridBody .highlight {
+.table .highlight {
 	background-color: #fdeccf !important;
 }
 

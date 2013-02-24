@@ -150,6 +150,7 @@ jQuery(document).ready(function(){
 		});
 	}
 	
+	/**
 	
 	// check all checkboxes in table
 	if(jQuery('.checkall').length > 0) {
@@ -205,7 +206,7 @@ jQuery(document).ready(function(){
 		});
 	}
 	
-	
+	**/
 	/////////////////////////////// ELEMENTS.HTML //////////////////////////////
 	
 	/**

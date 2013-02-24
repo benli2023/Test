@@ -3,29 +3,26 @@
 
 <rapid:override name="head">
 	<title><%=People.TABLE_ALIAS%>编辑</title>
+	<script type="text/javascript" src="${ctx}/theme/katniss/js/jquery.validate.min.js"></script>
 </rapid:override>
 
 <rapid:override name="content">
-	<form:form method="put" action="${ctx}/people/${people.personId}" modelAttribute="people">
-		<input id="submitButton" name="submitButton" type="submit" value="提交" />
-		<input type="button" value="返回列表" onclick="window.location='${ctx}/people'"/>
-		<input type="button" value="后退" onclick="history.back();"/>
-		
-		<table class="formTable">
+	<form:form method="put" action="${ctx}/people/${people.personId}" modelAttribute="people" cssClass="stdform" id="form1" >
 		<%@ include file="form_include.jsp" %>
-		</table>
 	</form:form>
-	
-	<script>
-		
-		new Validation(document.forms[0],{onSubmit:true,onFormValidate : function(result,form) {
-			var finalResult = result;
-			
-			//在这里添加自定义验证
-			
-			return disableSubmit(finalResult,'submitButton');
-		}});
-	</script>
+	<script type="text/javascript">
+// With Form Validation
+jQuery("#form1").validate({
+	highlight: function(label) {
+		jQuery(label).closest('.control-group').addClass('error');
+    },
+    success: function(label) {
+    	label
+    		.text('Ok!').addClass('valid')
+    		.closest('.control-group').addClass('success');
+    }
+});
+</script>
 </rapid:override>
 
 <%-- jsp模板继承,具体使用请查看: http://code.google.com/p/rapid-framework/wiki/rapid_jsp_extends --%>

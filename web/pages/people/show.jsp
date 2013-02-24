@@ -8,12 +8,12 @@
 
 <rapid:override name="content">
 	<form:form modelAttribute="people"  >
-		<input type="button" value="返回列表" onclick="window.location='${ctx}/people'"/>
-		<input type="button" value="后退" onclick="history.back();"/>
-		
 		<input type="hidden" id="personId" name="personId" value="${people.personId}"/>
-	
-		<table class="formTable">
+		<table class="table table-bordered">
+			<colgroup>
+                        <col class="con0" />
+                        <col class="con1" />
+             </colgroup>
 			<tr>	
 				<td class="tdLabel"><%=People.ALIAS_NAME%></td>	
 				<td><c:out value='${people.name}'/></td>
@@ -27,8 +27,11 @@
 				<td><c:out value='${people.recordDateString}'/></td>
 			</tr>
 		</table>
+		<p>
+		<input type="button" value="返回列表" onclick="window.location='${ctx}/people'" class="btn "/>
+		<input type="button" value="后退" onclick="history.back();"  class="btn "/>
+		</p>
 	</form:form>
 </rapid:override>
 
-<%-- jsp模板继承,具体使用请查看: http://code.google.com/p/rapid-framework/wiki/rapid_jsp_extends --%>
 <%@ include file="base.jsp" %>

@@ -8,23 +8,6 @@
 <script type="text/javascript" src="${ctx}/theme/katniss/js/jquery-ui-1.9.2.min.js"></script>
 <script type="text/javascript" src="${ctx}/theme/katniss/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${ctx}/theme/katniss/js/custom.js"></script>
-
-<!-- optional javascript: effects.js,jquery.js -->
 <link href="<c:url value="/styles/global.css"/>" type="text/css" rel="stylesheet">
-
-<!-- rapid-validation BEGIN-->
-<link href="<c:url value="/scripts/rapid-validation/validation.css"/>" type="text/css" rel="stylesheet">
-<script src="<c:url value="/scripts/rapid-validation/prototype_for_validation.js"/>" type="text/javascript"></script>
-
-<!-- 
-<script src="<c:url value="/scripts/rapid-validation/effects.js"/>" type="text/javascript"></script>
--->
-<!-- show validation error as tooptips -->
-<script src="<c:url value="/scripts/rapid-validation/tooltips.js"/>" type="text/javascript"></script>
-<link href="<c:url value="/scripts/rapid-validation/tooltips.css"/>" type="text/css" rel="stylesheet">
-<script src="<c:url value="/scripts/rapid-validation/validation_cn.js"/>" type="text/javascript"></script>
-<!-- rapid-validation END-->
-
 <script src="<c:url value="/scripts/application.js"/>" type="text/javascript"></script>
 
-<script src="<c:url value="/scripts/My97DatePicker/WdatePicker.js"/>" type="text/javascript"></script>
