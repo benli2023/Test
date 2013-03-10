@@ -8,5 +8,16 @@
 	<!-- component-scan自动搜索@Component , @Controller , @Service , @Repository等标注的类 -->
 	<!-- 默认值如果适合，该项可以不用修改 -->
 	<context:component-scan base-package="com.**.service" />
-
+	<bean id="classPathResourceLoader" class="org.springframework.core.io.DefaultResourceLoader" />
+	<bean id="colModelFactory" class="javacommon.util.ColModelFactory">
+			<constructor-arg index="0">
+				<value>com/company/project/controller/colmodel/</value>
+			</constructor-arg>
+			<constructor-arg index="1">
+				<ref bean="classPathResourceLoader" />
+			</constructor-arg>
+			<constructor-arg index="2">
+				<value>15</value>
+			</constructor-arg>
+		</bean>
 </beans>

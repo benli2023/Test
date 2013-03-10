@@ -8,12 +8,12 @@
 
 package com.company.project.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javacommon.base.BaseRestSpringController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,14 +31,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.company.project.vo.query.StaffQuery;
 
 import cn.org.rapid_framework.page.Page;
 import cn.org.rapid_framework.web.scope.Flash;
 
 import java.util.*;
 
-import javacommon.base.*;
-import javacommon.util.*;
 
 import cn.org.rapid_framework.util.*;
 import cn.org.rapid_framework.web.util.*;
@@ -49,6 +50,8 @@ import com.company.project.model.*;
 import com.company.project.dao.*;
 import com.company.project.service.*;
 import com.company.project.vo.query.*;
+import com.github.springrest.base.*;
+import com.github.springrest.util.*;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com
@@ -95,6 +98,8 @@ public class ProductController extends BaseRestSpringController<Product,java.lan
 		model.addAllAttributes(toModelMap(page, query));
 		return "/product/index";
 	}
+
+	
 	
 	/** 显示 */
 	@RequestMapping(value="/{id}")

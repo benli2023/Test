@@ -49,8 +49,7 @@
     <![CDATA[
         UPDATE people SET
 	        Name = #name# ,
-	        Age = #age# ,
-	        RecordDate = #recordDate# 
+	        Age = #age# 
         WHERE 
 	        PersonId = #personId# 
     ]]>

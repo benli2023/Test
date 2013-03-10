@@ -10,7 +10,6 @@ package com.company.project.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javacommon.base.BaseRestSpringController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +33,7 @@ import cn.org.rapid_framework.web.scope.Flash;
 import com.company.project.model.People;
 import com.company.project.service.PeopleManager;
 import com.company.project.vo.query.PeopleQuery;
+import com.github.springrest.base.BaseRestSpringController;
 
 @Controller
 @RequestMapping("/people")

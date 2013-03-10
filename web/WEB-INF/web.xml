@@ -63,7 +63,7 @@
 	<!-- LoggerMDCFilter,存放在MDC中的数据，log4j可以直接引用并作为日志信息打印出来. -->
 	<filter>
 		<filter-name>LoggerMDCFilter</filter-name>
-		<filter-class>javacommon.filter.LoggerMDCFilter</filter-class>
+		<filter-class>com.github.springrest.filter.LoggerMDCFilter</filter-class>
 	</filter>
 			
 	<filter-mapping>
@@ -177,5 +177,11 @@
 		<filter-name>HiddenHttpMethodFilter</filter-name>
 		<servlet-name>springmvc</servlet-name>
 	</filter-mapping>
+		<jsp-config>
+		<taglib>
+				<taglib-uri>http://www.yunwei.com/jsp/tags</taglib-uri>
+				<taglib-location>/WEB-INF/taglib.tld</taglib-location>
+		</taglib>
+	</jsp-config>
 </web-app>
 

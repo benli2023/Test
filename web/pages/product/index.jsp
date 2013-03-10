@@ -7,7 +7,9 @@
 
 <rapid:override name="head">
 	<title><%=Product.TABLE_ALIAS%> 维护</title>
-	
+	<%@ include file="../../commons/opera-maskui-dialog-import.jsp" %>
+	<link href="<c:url value="${ctx}/scripts/plugins/popup-input/popup-input.css"/>" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="${ctx}/scripts/plugins/popup-input/popup_selection.js"></script>
 	<script src="${ctx}/scripts/rest.js" ></script>
 	<link href="<c:url value="/widgets/simpletable/simpletable.css"/>" type="text/css" rel="stylesheet">
 	<script type="text/javascript" src="<c:url value="/widgets/simpletable/simpletable.js"/>"></script>
@@ -29,7 +31,7 @@
 				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_CAT_ID%></td>		
 					<td>
-						<input value="${query.catId}" id="catId" name="catId" maxlength="19"  class="validate-integer "/>
+						<yun:button-edit name="catIdTxt" hiddenName="catId" id="product_catId" txtVal="${query.catIdTxt}"  hiddenVal="${query.catId}" width="130"  profileId="product"/> 
 					</td>
 					<td class="tdLabel"><%=Product.ALIAS_PRODUCT_NAME%></td>		
 					<td>
@@ -189,9 +191,19 @@
 		<simpletable:pageToolbar page="${page}">
 		显示在这里是为了提示你如何自定义表头,可修改模板删除此行
 		</simpletable:pageToolbar>
-		
 	</div>
 	</form>
+	
+	<script type="text/javascript">
+	 var popupOption={
+		 'product_catId': {url:'${ctx}/category/query',title:'选择产品分类',textColumn:'cate_name',valueColumn:'cateId'}
+	 };
+	 PopupSelection.initOption(popupOption); 	
+	</script>
+	  <div id="dialog-modal" title="">
+        <iframe frameborder="0" style="width:100%;height:99%;height:100%\9;" src="about:blank"></iframe>
+    </div>
+	
 </rapid:override>
 
 <%-- jsp模板继承,具体使用请查看: http://code.google.com/p/rapid-framework/wiki/rapid_jsp_extends --%>

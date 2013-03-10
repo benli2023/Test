@@ -7,37 +7,37 @@
 <sqlMap>
 
     <resultMap id="RM.Category" class="com.company.project.model.Category">
-        <result property="cateId" column="cate_id"/>
         <result property="parentId" column="parent_id"/>
-        <result property="cateName" column="cate_name"/>
-        <result property="isAvailable" column="is_available"/>
+        <result property="cateId" column="cate_id"/>
         <result property="ctime" column="cTime"/>
+        <result property="cateName" column="cate_name"/>
         <result property="admin" column="admin"/>
+        <result property="isAvailable" column="is_available"/>
     </resultMap>
 
 	<!-- 用于select查询公用抽取的列 -->
 	<sql id="Category.columns">
 	    <![CDATA[
-        cate_id ,parent_id ,cate_name ,is_available ,cTime ,admin 
+        parent_id ,cate_id ,cTime ,cate_name ,admin ,is_available 
 	    ]]>
 	</sql>
 	
     <insert id="Category.insert" >
     <![CDATA[
         INSERT INTO category (
-        	cate_id ,
         	parent_id ,
-        	cate_name ,
-        	is_available ,
+        	cate_id ,
         	cTime ,
-        	admin 
+        	cate_name ,
+        	admin ,
+        	is_available 
         ) VALUES (
-        	#cateId# ,
         	#parentId# ,
-        	#cateName# ,
-        	#isAvailable# ,
+        	#cateId# ,
         	#ctime# ,
-        	#admin# 
+        	#cateName# ,
+        	#admin# ,
+        	#isAvailable# 
         )
     ]]>
     <!--
@@ -55,10 +55,10 @@
     <![CDATA[
         UPDATE category SET
 	        parent_id = #parentId# ,
-	        cate_name = #cateName# ,
-	        is_available = #isAvailable# ,
 	        cTime = #ctime# ,
-	        admin = #admin# 
+	        cate_name = #cateName# ,
+	        admin = #admin# ,
+	        is_available = #isAvailable# 
         WHERE 
 	        cate_id = #cateId# 
     ]]>
@@ -82,17 +82,11 @@
 
 	<sql id="Category.findPage.where">
 	    <dynamic prepend="WHERE">
-		       <isNotEmpty prepend="AND" property="cateId">
-		             cate_id = #cateId#
-		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="parentId">
 		             parent_id = #parentId#
 		       </isNotEmpty>
-		       <isNotEmpty prepend="AND" property="cateName">
-		             cate_name = #cateName#
-		       </isNotEmpty>
-		       <isNotEmpty prepend="AND" property="isAvailable">
-		             is_available = #isAvailable#
+		       <isNotEmpty prepend="AND" property="cateId">
+		             cate_id = #cateId#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="ctimeBegin">
 		             cTime >= #ctimeBegin#
@@ -100,9 +94,18 @@
 		       <isNotEmpty prepend="AND" property="ctimeEnd">
 		             cTime &lt;= #ctimeEnd#
 		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="cateName">
+		             cate_name = #cateName#
+		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="admin">
 		             admin = #admin#
 		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="isAvailable">
+		             is_available = #isAvailable#
+		       </isNotEmpty>
+	       	   <isNotEmpty prepend="AND" property="searchTerm">
+	        	( cate_name like '%$searchTerm$%'   )
+	           </isNotEmpty>
 	    </dynamic>	
 	</sql>
 	 

@@ -13,6 +13,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<%@ include file="/commons/meta.jsp" %>
 	<base href="<%=basePath%>">
 	<rapid:block name="head"/>
+		
+ <style>
+ 	* {
+ 	
+ 		font-size:12px;
+ 	} 
+ 
+ </style>
 </head>
 <body>
 	<%@ include file="/commons/messages.jsp" %>

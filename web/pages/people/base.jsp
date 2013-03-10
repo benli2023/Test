@@ -1,1 +1,1 @@
-<%@ include file="../base.jsp"  %>
+<%@ include file="../katniss_base.jsp"  %>

@@ -9,8 +9,8 @@
 	<title><%=People.TABLE_ALIAS%> 维护</title>
 	
 	<script src="${ctx}/scripts/rest.js" ></script>
-	<link href="<c:url value="/widgets/simpletable/simpletable.css"/>" type="text/css" rel="stylesheet">
-	<script type="text/javascript" src="<c:url value="/widgets/simpletable/simpletable.js"/>"></script>
+	<link href="<c:url value="/widgets/simpletable/simpletable_katniss.css"/>" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="<c:url value="/widgets/simpletable/simpletable_katniss.js"/>"></script>
 	
 	<script type="text/javascript" >
 		jQuery(document).ready(function() {

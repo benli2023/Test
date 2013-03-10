@@ -12,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javacommon.base.BaseRestSpringController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +36,7 @@ import cn.org.rapid_framework.web.scope.Flash;
 import com.company.project.model.SaleOrder;
 import com.company.project.service.SaleOrderManager;
 import com.company.project.vo.query.SaleOrderQuery;
+import com.github.springrest.base.BaseRestSpringController;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com

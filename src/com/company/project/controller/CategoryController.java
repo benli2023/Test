@@ -8,12 +8,12 @@
 
 package com.company.project.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javacommon.base.BaseRestSpringController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,14 +31,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.company.project.vo.query.StaffQuery;
 
 import cn.org.rapid_framework.page.Page;
 import cn.org.rapid_framework.web.scope.Flash;
 
 import java.util.*;
 
-import javacommon.base.*;
-import javacommon.util.*;
 
 import cn.org.rapid_framework.util.*;
 import cn.org.rapid_framework.web.util.*;
@@ -49,6 +50,8 @@ import com.company.project.model.*;
 import com.company.project.dao.*;
 import com.company.project.service.*;
 import com.company.project.vo.query.*;
+import com.github.springrest.base.*;
+import com.github.springrest.util.*;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com
@@ -63,6 +66,11 @@ public class CategoryController extends BaseRestSpringController<Category,java.l
 	protected static final String DEFAULT_SORT_COLUMNS = null; 
 	
 	private CategoryManager categoryManager;
+	private ColModelFactory colModelFactory;
+
+	public void setColModelFactory(ColModelFactory colModelFactory) {
+		this.colModelFactory = colModelFactory;
+	}
 	
 	private final String LIST_ACTION = "redirect:/category";
 	
@@ -95,6 +103,24 @@ public class CategoryController extends BaseRestSpringController<Category,java.l
 		model.addAllAttributes(toModelMap(page, query));
 		return "/category/index";
 	}
+
+	@RequestMapping({ "/index.json" })
+	@ResponseBody
+	public Map indexJson(ModelMap model, CategoryQuery query) {
+		Page page = this.categoryManager.findPage(query);
+		return jsonPagination(page);
+	}
+
+	@RequestMapping({ "/query" })
+	public String query(ModelMap model, String fieldId,String profileId) throws Exception {
+		model.addAttribute("fieldId", fieldId);
+		model.addAttribute("jsonURL", "/category/index.json");
+		model.addAttribute("pageTitle",Category.TABLE_ALIAS);
+		ColModelProfile colModelProfile=colModelFactory.getColModel("Category-colmodel.xml",profileId);
+		model.addAttribute("colModelList", colModelProfile.getColModels());
+		return "/popup/table_window";
+	}
+	
 	
 	/** 显示 */
 	@RequestMapping(value="/{id}")

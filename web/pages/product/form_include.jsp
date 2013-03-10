@@ -9,7 +9,7 @@
 			<%=Product.ALIAS_CAT_ID%>:
 		</td>		
 		<td>
-		<form:input path="catId" id="catId" cssClass="validate-integer " maxlength="19" />
+		<yun:button-edit name="catIdTxt" hiddenName="catId" id="product_catId" txtVal="${product.catIdTxt}"  hiddenVal="${product.catId}" width="130"  profileId="product"/> 
 		<font color='red'><form:errors path="catId"/></font>
 		</td>
 	</tr>	
@@ -170,6 +170,7 @@
 		</td>		
 		<td>
 		<input value="${product.ctimeString}" onclick="WdatePicker({dateFmt:'<%=Product.FORMAT_CTIME%>'})" id="ctimeString" name="ctimeString"  maxlength="0" class="" />
+	
 		<font color='red'><form:errors path="ctime"/></font>
 		</td>
 	</tr>	

@@ -14,7 +14,6 @@ import java.util.Map;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javacommon.base.BaseRestSpringController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,8 +38,6 @@ import cn.org.rapid_framework.web.scope.Flash;
 
 import java.util.*;
 
-import javacommon.base.*;
-import javacommon.util.*;
 
 import cn.org.rapid_framework.util.*;
 import cn.org.rapid_framework.web.util.*;
@@ -51,6 +48,8 @@ import com.company.project.model.*;
 import com.company.project.dao.*;
 import com.company.project.service.*;
 import com.company.project.vo.query.*;
+import com.github.springrest.base.*;
+import com.github.springrest.util.*;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com
