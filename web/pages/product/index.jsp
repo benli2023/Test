@@ -33,6 +33,10 @@
 					<td>
 						<yun:button-edit name="catIdTxt" hiddenName="catId" id="product_catId" txtVal="${query.catIdTxt}"  hiddenVal="${query.catId}" width="130"  profileId="product"/> 
 					</td>
+					<td class="tdLabel"><%=Product.ALIAS_PEOPLE_ID%></td>		
+					<td>
+						<yun:button-edit name="peopleIdTxt" hiddenName="peopleId" id="product_peopleId" txtVal="${query.peopleIdTxt}"  hiddenVal="${query.peopleId}" width="130"  profileId="product"/> 
+					</td>
 					<td class="tdLabel"><%=Product.ALIAS_PRODUCT_NAME%></td>		
 					<td>
 						<input value="${query.productName}" id="productName" name="productName" maxlength="64"  class=""/>
@@ -41,12 +45,12 @@
 					<td>
 						<input value="${query.productCode}" id="productCode" name="productCode" maxlength="64"  class=""/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_CEIL_LIMIT%></td>		
 					<td>
 						<input value="${query.ceilLimit}" id="ceilLimit" name="ceilLimit" maxlength="10"  class="validate-integer max-value-2147483647"/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_LOW_LIMIT%></td>		
 					<td>
 						<input value="${query.lowLimit}" id="lowLimit" name="lowLimit" maxlength="10"  class="validate-integer max-value-2147483647"/>
@@ -59,12 +63,12 @@
 					<td>
 						<input value="${query.productSpec}" id="productSpec" name="productSpec" maxlength="64"  class=""/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_SALE_PRICE%></td>		
 					<td>
 						<input value="${query.salePrice}" id="salePrice" name="salePrice" maxlength="10"  class="validate-integer "/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_PURCHASE_PRICE%></td>		
 					<td>
 						<input value="${query.purchasePrice}" id="purchasePrice" name="purchasePrice" maxlength="10"  class="validate-integer "/>
@@ -77,12 +81,12 @@
 					<td>
 						<input value="${query.isSellable}" id="isSellable" name="isSellable" maxlength="1"  class=""/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_IS_NEGATIVE%></td>		
 					<td>
 						<input value="${query.isNegative}" id="isNegative" name="isNegative" maxlength="1"  class=""/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_IS_PURCHASABLE%></td>		
 					<td>
 						<input value="${query.isPurchasable}" id="isPurchasable" name="isPurchasable" maxlength="1"  class=""/>
@@ -95,12 +99,12 @@
 					<td>
 						<input value="${query.manufacturer}" id="manufacturer" name="manufacturer" maxlength="256"  class=""/>
 					</td>
+				</tr>	
+				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_ORGINAL_PLACE%></td>		
 					<td>
 						<input value="${query.orginalPlace}" id="orginalPlace" name="orginalPlace" maxlength="256"  class=""/>
 					</td>
-				</tr>	
-				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_CTIME%></td>		
 					<td>
 						<input value="<fmt:formatDate value='${query.ctimeBegin}' pattern='<%=Product.FORMAT_CTIME%>'/>" onclick="WdatePicker({dateFmt:'<%=Product.FORMAT_CTIME%>'})" id="ctimeBegin" name="ctimeBegin"   />
@@ -132,6 +136,7 @@
 				
 				<!-- 排序时为th增加sortColumn即可,new SimpleTable('sortColumns')会为tableHeader自动增加排序功能; -->
 				<th sortColumn="cat_id" ><%=Product.ALIAS_CAT_ID%></th>
+				<th sortColumn="people_id" ><%=Product.ALIAS_PEOPLE_ID%></th>
 				<th sortColumn="product_name" ><%=Product.ALIAS_PRODUCT_NAME%></th>
 				<th sortColumn="product_code" ><%=Product.ALIAS_PRODUCT_CODE%></th>
 				<th sortColumn="ceil_limit" ><%=Product.ALIAS_CEIL_LIMIT%></th>
@@ -160,7 +165,8 @@
 				<td>${page.thisPageFirstElementNumber + status.index}</td>
 				<td><input type="checkbox" name="items" value="${item.productId}"></td>
 				
-				<td><c:out value='${item.catId}'/>&nbsp;</td>
+				<td><c:out value='${item.catIdTxt}'/>&nbsp;</td>
+				<td><c:out value='${item.peopleIdTxt}'/>&nbsp;</td>
 				<td><c:out value='${item.productName}'/>&nbsp;</td>
 				<td><c:out value='${item.productCode}'/>&nbsp;</td>
 				<td><c:out value='${item.ceilLimit}'/>&nbsp;</td>
@@ -196,7 +202,8 @@
 	
 	<script type="text/javascript">
 	 var popupOption={
-		 'product_catId': {url:'${ctx}/category/query',title:'选择产品分类',textColumn:'cate_name',valueColumn:'cateId'}
+		 'product_catId': {url:'${ctx}/category/query',title:'选择产品分类',textColumn:'cate_name',valueColumn:'cateId'},
+		 'product_peopleId': {url:'${ctx}/people/query',title:'选择人员',textColumn:'Name',valueColumn:'personId'}
 	 };
 	 PopupSelection.initOption(popupOption); 	
 	</script>

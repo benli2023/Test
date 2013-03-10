@@ -7,30 +7,34 @@
 <sqlMap>
 
     <resultMap id="RM.Product" class="com.company.project.model.Product">
-        <result property="productId" column="product_id"/>
+         <result property="productId" column="product_id"/>
         <result property="catId" column="cat_id"/>
-        <result property="productName" column="product_name"/>
-        <result property="productCode" column="product_code"/>
-        <result property="ceilLimit" column="ceil_limit"/>
-        <result property="lowLimit" column="low_limit"/>
-        <result property="pinyCode" column="piny_code"/>
-        <result property="productSpec" column="product_spec"/>
-        <result property="salePrice" column="sale_price"/>
-        <result property="purchasePrice" column="purchase_price"/>
-        <result property="isAvailable" column="is_available"/>
-        <result property="isSellable" column="is_sellable"/>
-        <result property="isNegative" column="is_negative"/>
-        <result property="isPurchasable" column="is_purchasable"/>
-        <result property="productImage" column="product_image"/>
-        <result property="manufacturer" column="manufacturer"/>
-        <result property="orginalPlace" column="orginal_place"/>
-        <result property="ctime" column="cTime"/>
+        <result property="catIdTxt" column="cate_name"/>
+        <result property="peopleId" column="people_id"/>
+        <result property="peopleIdTxt" column="Name"/>
+         <result property="productName" column="product_name"/>
+         <result property="productCode" column="product_code"/>
+         <result property="ceilLimit" column="ceil_limit"/>
+         <result property="lowLimit" column="low_limit"/>
+         <result property="pinyCode" column="piny_code"/>
+         <result property="productSpec" column="product_spec"/>
+         <result property="salePrice" column="sale_price"/>
+         <result property="purchasePrice" column="purchase_price"/>
+         <result property="isAvailable" column="is_available"/>
+         <result property="isSellable" column="is_sellable"/>
+         <result property="isNegative" column="is_negative"/>
+         <result property="isPurchasable" column="is_purchasable"/>
+         <result property="productImage" column="product_image"/>
+         <result property="manufacturer" column="manufacturer"/>
+         <result property="orginalPlace" column="orginal_place"/>
+         <result property="ctime" column="cTime"/>
     </resultMap>
 
 	<!-- 用于select查询公用抽取的列 -->
 	<sql id="Product.columns">
 	    <![CDATA[
-        product_id ,cat_id ,product_name ,product_code ,ceil_limit ,low_limit ,piny_code ,product_spec ,sale_price ,purchase_price ,is_available ,is_sellable ,is_negative ,is_purchasable ,product_image ,manufacturer ,orginal_place ,cTime 
+         pro.product_id , pro.cat_id , pro.people_id , pro.product_name , pro.product_code , pro.ceil_limit , pro.low_limit , pro.piny_code , pro.product_spec , pro.sale_price , pro.purchase_price , pro.is_available , pro.is_sellable , pro.is_negative , pro.is_purchasable , pro.product_image , pro.manufacturer , pro.orginal_place , pro.cTime  , cat.cate_name, peo.Name
+        
 	    ]]>
 	</sql>
 	
@@ -39,6 +43,7 @@
         INSERT INTO product (
         	product_id ,
         	cat_id ,
+        	people_id ,
         	product_name ,
         	product_code ,
         	ceil_limit ,
@@ -58,6 +63,7 @@
         ) VALUES (
         	#productId# ,
         	#catId# ,
+        	#peopleId# ,
         	#productName# ,
         	#productCode# ,
         	#ceilLimit# ,
@@ -91,6 +97,7 @@
     <![CDATA[
         UPDATE product SET
 	        cat_id = #catId# ,
+	        people_id = #peopleId# ,
 	        product_name = #productName# ,
 	        product_code = #productCode# ,
 	        ceil_limit = #ceilLimit# ,
@@ -122,9 +129,9 @@
     <select id="Product.getById" resultMap="RM.Product">
 	    SELECT <include refid="Product.columns"/>
 	    <![CDATA[
-	        FROM product 
+	        FROM product AS pro   Left Join category AS cat ON pro.cat_id=cat.cate_id  Left Join people AS peo ON pro.people_id=peo.PersonId
 	        WHERE 
-		        product_id = #productId# 
+		        pro.product_id = #productId# 
 	    ]]>
     </select>
 
@@ -135,6 +142,9 @@
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="catId">
 		             cat_id = #catId#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="peopleId">
+		             people_id = #peopleId#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="productName">
 		             product_name = #productName#
@@ -199,10 +209,10 @@
     	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
     -->
     <select id="Product.findPage" resultMap="RM.Product">
-    	SELECT <include refid="Product.columns"/> FROM product 
+    	SELECT <include refid="Product.columns"/> FROM product AS pro   Left Join category AS cat ON pro.cat_id=cat.cate_id  Left Join people AS peo ON pro.people_id=peo.PersonId
 		<include refid="Product.findPage.where"/>
 		<isNotEmpty property="sortColumns">
-			ORDER BY $sortColumns$
+			ORDER BY pro.$sortColumns$
 		</isNotEmpty>
     </select>
 

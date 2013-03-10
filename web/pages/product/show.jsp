@@ -19,6 +19,10 @@
 				<td><c:out value='${product.catId}'/></td>
 			</tr>
 			<tr>	
+				<td class="tdLabel"><%=Product.ALIAS_PEOPLE_ID%></td>	
+				<td><c:out value='${product.peopleId}'/></td>
+			</tr>
+			<tr>	
 				<td class="tdLabel"><%=Product.ALIAS_PRODUCT_NAME%></td>	
 				<td><c:out value='${product.productName}'/></td>
 			</tr>

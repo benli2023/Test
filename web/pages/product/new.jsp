@@ -32,7 +32,8 @@
 	
 	<script type="text/javascript">
 	 var popupOption={
-		 'product_catId': {url:'${ctx}/category/query',title:'选择产品分类',textColumn:'cate_name',valueColumn:'cateId'}
+		 'product_catId': {url:'${ctx}/category/query',title:'选择产品分类',textColumn:'cate_name',valueColumn:'cateId'},
+		 'product_peopleId': {url:'${ctx}/people/query',title:'选择人员',textColumn:'Name',valueColumn:'personId'}
 	 };
 	 PopupSelection.initOption(popupOption); 	
 	</script>

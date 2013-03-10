@@ -16,6 +16,16 @@
 	
 	<tr>	
 		<td class="tdLabel">
+			<%=Product.ALIAS_PEOPLE_ID%>:
+		</td>		
+		<td>
+		<yun:button-edit name="peopleIdTxt" hiddenName="peopleId" id="product_peopleId" txtVal="${product.peopleIdTxt}"  hiddenVal="${product.peopleId}" width="130"  profileId="product"/> 
+		<font color='red'><form:errors path="peopleId"/></font>
+		</td>
+	</tr>	
+	
+	<tr>	
+		<td class="tdLabel">
 			<%=Product.ALIAS_PRODUCT_NAME%>:
 		</td>		
 		<td>

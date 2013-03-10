@@ -13,10 +13,16 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.github.springrest.base.JsonDateSerializer;
 
 import java.util.*;
 
-
+import com.github.springrest.base.*;
+import com.github.springrest.util.*;
+import org.codehaus.jackson.annotate.*;
 import cn.org.rapid_framework.util.*;
 import cn.org.rapid_framework.web.util.*;
 import cn.org.rapid_framework.page.*;
@@ -26,8 +32,6 @@ import com.company.project.model.*;
 import com.company.project.dao.*;
 import com.company.project.service.*;
 import com.company.project.vo.query.*;
-import com.github.springrest.base.*;
-import com.github.springrest.util.*;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com
@@ -51,45 +55,60 @@ public class People extends BaseEntity implements java.io.Serializable {
 	
 	//可以直接使用: @Length(max=50,message="用户名长度不能大于50")显示错误消息
 	//columns START
+	
     /**
      * personId       db_column: PersonId 
      */ 	
 	
-	private java.lang.Long personId;
+	
+	
+	private java.lang.Integer personId;
+	
+	
     /**
      * name       db_column: Name 
      */ 	
 	@NotBlank @Length(max=45)
+	@JsonProperty("Name")
+	
 	private java.lang.String name;
+	
+	
     /**
      * age       db_column: Age 
      */ 	
 	@NotNull 
+	
+	
 	private java.lang.Integer age;
+	
+	
     /**
      * recordDate       db_column: RecordDate 
      */ 	
+	@NotNull 
+	
+	@JsonSerialize(using = JsonDateSerializer.class)
 	private java.util.Date recordDate;
+	
 	//columns END
 
 	public People(){
 	}
 
 	public People(
-		java.lang.Long personId
+		java.lang.Integer personId
 	){
 		this.personId = personId;
 	}
 
+	public void setPersonId(java.lang.Integer value) {
+		this.personId = value;
+	}
 	
-	public java.lang.Long getPersonId() {
-		return personId;
+	public java.lang.Integer getPersonId() {
+		return this.personId;
 	}
-
-	public void setPersonId(java.lang.Long personId) {
-		this.personId = personId;
-	}
-
 	public void setName(java.lang.String value) {
 		this.name = value;
 	}

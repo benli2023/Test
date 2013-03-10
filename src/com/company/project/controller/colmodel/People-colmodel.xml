@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<column-models id="people">
+	<profile id="product" default="true" >
+		<column-model>
+			<header>personId</header>
+			<name>personId</name>
+			<width>50</width>
+			<align>center</align>
+		</column-model>
+		<column-model>
+			<header>name</header>
+			<name>Name</name>
+			<width>100</width>
+			<align>center</align>
+		</column-model>
+		<column-model>
+			<header>age</header>
+			<name>age</name>
+			<width>60</width>
+			<align>center</align>
+		</column-model>
+		<column-model>
+			<header>recordDate</header>
+			<name>recordDate</name>
+			<width>60</width>
+			<align>center</align>
+		</column-model>
+	</profile>
+</column-models>
