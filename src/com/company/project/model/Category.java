@@ -7,16 +7,31 @@
 
 package com.company.project.model;
 
+import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.*;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.codehaus.jackson.annotate.JsonProperty;
-import org.hibernate.validator.constraints.Length;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import cn.org.rapid_framework.util.DateConvertUtils;
+import com.github.springrest.base.JsonDateSerializer;
 
-import com.github.springrest.base.BaseEntity;
+import java.util.*;
+
+import com.github.springrest.base.*;
+import com.github.springrest.util.*;
+import org.codehaus.jackson.annotate.*;
+import cn.org.rapid_framework.util.*;
+import cn.org.rapid_framework.web.util.*;
+import cn.org.rapid_framework.page.*;
+import cn.org.rapid_framework.page.impl.*;
+
+import com.company.project.model.*;
+import com.company.project.dao.*;
+import com.company.project.service.*;
+import com.company.project.vo.query.*;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com
@@ -30,12 +45,12 @@ public class Category extends BaseEntity implements java.io.Serializable {
 	
 	//alias
 	public static final String TABLE_ALIAS = "Category";
-	public static final String ALIAS_PARENT_ID = "parentId";
 	public static final String ALIAS_CATE_ID = "cateId";
-	public static final String ALIAS_CTIME = "创建时间";
+	public static final String ALIAS_PARENT_ID = "parentId";
 	public static final String ALIAS_CATE_NAME = "cateName";
-	public static final String ALIAS_ADMIN = "创建人";
 	public static final String ALIAS_IS_AVAILABLE = "是否有效";
+	public static final String ALIAS_CTIME = "创建时间";
+	public static final String ALIAS_ADMIN = "创建人";
 	
 	//date formats
 	public static final String FORMAT_CTIME = DATE_FORMAT;
@@ -44,27 +59,16 @@ public class Category extends BaseEntity implements java.io.Serializable {
 	//columns START
 	
     /**
-     * parentId       db_column: parent_id 
-     */ 	
-	
-	
-	private java.lang.Long parentId;
-	
-	
-    /**
      * cateId       db_column: cate_id 
      */ 	
+	
 	
 	
 	private java.lang.Long cateId;
 	
 	
-    /**
-     * 创建时间       db_column: cTime 
-     */ 	
-	
-	
-	private java.util.Date ctime;
+	private java.lang.Long parentId;
+	private String parentIdTxt;
 	
 	
     /**
@@ -72,15 +76,8 @@ public class Category extends BaseEntity implements java.io.Serializable {
      */ 	
 	@Length(max=128)
 	@JsonProperty("cate_name")
+	
 	private java.lang.String cateName;
-	
-	
-    /**
-     * 创建人       db_column: admin 
-     */ 	
-	
-	
-	private java.lang.Long admin;
 	
 	
     /**
@@ -88,7 +85,26 @@ public class Category extends BaseEntity implements java.io.Serializable {
      */ 	
 	
 	
+	
 	private java.lang.Boolean isAvailable;
+	
+	
+    /**
+     * 创建时间       db_column: cTime 
+     */ 	
+	
+	
+	@JsonSerialize(using = JsonDateSerializer.class)
+	private java.util.Date ctime;
+	
+	
+    /**
+     * 创建人       db_column: admin 
+     */ 	
+	
+	
+	
+	private java.lang.Long admin;
 	
 	//columns END
 
@@ -101,6 +117,13 @@ public class Category extends BaseEntity implements java.io.Serializable {
 		this.cateId = cateId;
 	}
 
+	public void setCateId(java.lang.Long value) {
+		this.cateId = value;
+	}
+	
+	public java.lang.Long getCateId() {
+		return this.cateId;
+	}
 	public void setParentId(java.lang.Long value) {
 		this.parentId = value;
 	}
@@ -108,12 +131,26 @@ public class Category extends BaseEntity implements java.io.Serializable {
 	public java.lang.Long getParentId() {
 		return this.parentId;
 	}
-	public void setCateId(java.lang.Long value) {
-		this.cateId = value;
+	public String getParentIdTxt() {
+		return this.parentIdTxt;
 	}
 	
-	public java.lang.Long getCateId() {
-		return this.cateId;
+	public void setParentIdTxt(String value) {
+		this.parentIdTxt = value;
+	}
+	public void setCateName(java.lang.String value) {
+		this.cateName = value;
+	}
+	
+	public java.lang.String getCateName() {
+		return this.cateName;
+	}
+	public void setIsAvailable(java.lang.Boolean value) {
+		this.isAvailable = value;
+	}
+	
+	public java.lang.Boolean getIsAvailable() {
+		return this.isAvailable;
 	}
 	public String getCtimeString() {
 		return DateConvertUtils.format(getCtime(), FORMAT_CTIME);
@@ -129,13 +166,6 @@ public class Category extends BaseEntity implements java.io.Serializable {
 	public java.util.Date getCtime() {
 		return this.ctime;
 	}
-	public void setCateName(java.lang.String value) {
-		this.cateName = value;
-	}
-	
-	public java.lang.String getCateName() {
-		return this.cateName;
-	}
 	public void setAdmin(java.lang.Long value) {
 		this.admin = value;
 	}
@@ -143,22 +173,15 @@ public class Category extends BaseEntity implements java.io.Serializable {
 	public java.lang.Long getAdmin() {
 		return this.admin;
 	}
-	public void setIsAvailable(java.lang.Boolean value) {
-		this.isAvailable = value;
-	}
-	
-	public java.lang.Boolean getIsAvailable() {
-		return this.isAvailable;
-	}
 
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-			.append("ParentId",getParentId())
 			.append("CateId",getCateId())
-			.append("Ctime",getCtime())
+			.append("ParentId",getParentId())
 			.append("CateName",getCateName())
-			.append("Admin",getAdmin())
 			.append("IsAvailable",getIsAvailable())
+			.append("Ctime",getCtime())
+			.append("Admin",getAdmin())
 			.toString();
 	}
 	

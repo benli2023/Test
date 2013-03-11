@@ -7,7 +7,9 @@
 
 <rapid:override name="head">
 	<title><%=Category.TABLE_ALIAS%> 维护</title>
-	
+	<%@ include file="../../commons/opera-maskui-dialog-import.jsp" %>
+	<link href="<c:url value="${ctx}/scripts/plugins/popup-input/popup-input.css"/>" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="${ctx}/scripts/plugins/popup-input/popup_selection.js"></script>
 	<script src="${ctx}/scripts/rest.js" ></script>
 	<link href="<c:url value="/widgets/simpletable/simpletable.css"/>" type="text/css" rel="stylesheet">
 	<script type="text/javascript" src="<c:url value="/widgets/simpletable/simpletable.js"/>"></script>
@@ -29,7 +31,7 @@
 				<tr>	
 					<td class="tdLabel"><%=Category.ALIAS_PARENT_ID%></td>		
 					<td>
-						<input value="${query.parentId}" id="parentId" name="parentId" maxlength="19"  class="validate-integer "/>
+						<yun:button-edit name="parentIdTxt" hiddenName="parentId" id="category_parentId" txtVal="${query.parentIdTxt}"  hiddenVal="${query.parentId}" width="130"  profileId="category"/> 
 					</td>
 					<td class="tdLabel"><%=Category.ALIAS_CATE_NAME%></td>		
 					<td>
@@ -92,7 +94,7 @@
 				<td>${page.thisPageFirstElementNumber + status.index}</td>
 				<td><input type="checkbox" name="items" value="${item.cateId}"></td>
 				
-				<td><c:out value='${item.parentId}'/>&nbsp;</td>
+				<td><c:out value='${item.parentIdTxt}'/>&nbsp;</td>
 				<td><c:out value='${item.cateName}'/>&nbsp;</td>
 				<td><c:out value='${item.isAvailable}'/>&nbsp;</td>
 				<td><c:out value='${item.ctimeString}'/>&nbsp;</td>
@@ -111,9 +113,19 @@
 		<simpletable:pageToolbar page="${page}">
 		显示在这里是为了提示你如何自定义表头,可修改模板删除此行
 		</simpletable:pageToolbar>
-		
 	</div>
 	</form>
+	
+	<script type="text/javascript">
+	 var popupOption={
+		 'category_parentId': {url:'${ctx}/category/query',title:'选择Category',textColumn:'cate_name',valueColumn:'cateId'}
+	 };
+	 PopupSelection.initOption(popupOption); 	
+	</script>
+	  <div id="dialog-modal" title="">
+        <iframe frameborder="0" style="width:100%;height:99%;height:100%\9;" src="about:blank"></iframe>
+    </div>
+	
 </rapid:override>
 
 <%-- jsp模板继承,具体使用请查看: http://code.google.com/p/rapid-framework/wiki/rapid_jsp_extends --%>

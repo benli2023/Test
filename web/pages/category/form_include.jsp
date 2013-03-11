@@ -9,7 +9,7 @@
 			<%=Category.ALIAS_PARENT_ID%>:
 		</td>		
 		<td>
-		<form:input path="parentId" id="parentId" cssClass="validate-integer " maxlength="19" />
+		<yun:button-edit name="parentIdTxt" hiddenName="parentId" id="category_parentId" txtVal="${category.parentIdTxt}"  hiddenVal="${category.parentId}" width="130"  profileId="category"/> 
 		<font color='red'><form:errors path="parentId"/></font>
 		</td>
 	</tr>	
@@ -40,6 +40,7 @@
 		</td>		
 		<td>
 		<input value="${category.ctimeString}" onclick="WdatePicker({dateFmt:'<%=Category.FORMAT_CTIME%>'})" id="ctimeString" name="ctimeString"  maxlength="0" class="" />
+	
 		<font color='red'><form:errors path="ctime"/></font>
 		</td>
 	</tr>	

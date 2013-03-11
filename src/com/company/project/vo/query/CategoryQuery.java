@@ -16,7 +16,9 @@ import java.io.Serializable;
 
 import java.util.*;
 
-
+import com.github.springrest.base.*;
+import com.github.springrest.util.*;
+import org.codehaus.jackson.annotate.*;
 import cn.org.rapid_framework.util.*;
 import cn.org.rapid_framework.web.util.*;
 import cn.org.rapid_framework.page.*;
@@ -26,8 +28,6 @@ import com.company.project.model.*;
 import com.company.project.dao.*;
 import com.company.project.service.*;
 import com.company.project.vo.query.*;
-import com.github.springrest.base.*;
-import com.github.springrest.util.*;
 
 /**
  * @author badqiu email:badqiu(a)gmail.com
@@ -42,9 +42,10 @@ public class CategoryQuery extends BaseQuery implements Serializable {
 
 	/** cateId */
 	private java.lang.Long cateId;
-	/** 父结点ID */
+	/** parentId */
 	private java.lang.Long parentId;
-	/** 类别名称 */
+	private String parentIdTxt;
+	/** cateName */
 	private java.lang.String cateName;
 	/** 是否有效 */
 	private java.lang.Boolean isAvailable;
@@ -62,12 +63,21 @@ public class CategoryQuery extends BaseQuery implements Serializable {
 		this.cateId = value;
 	}
 	
+	
 	public java.lang.Long getParentId() {
 		return this.parentId;
 	}
 	
 	public void setParentId(java.lang.Long value) {
 		this.parentId = value;
+	}
+	
+	public String getParentIdTxt() {
+		return this.parentIdTxt;
+	}
+	
+	public void setParentIdTxt(String value) {
+		this.parentIdTxt = value;
 	}
 	
 	public java.lang.String getCateName() {
