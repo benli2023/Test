@@ -9,9 +9,9 @@
     <resultMap id="RM.Product" class="com.company.project.model.Product">
          <result property="productId" column="product_id"/>
         <result property="catId" column="cat_id"/>
-        <result property="catIdTxt" column="cate_name"/>
+        <result property="catIdTxt" column="cat1_catename"/>
         <result property="peopleId" column="people_id"/>
-        <result property="peopleIdTxt" column="Name"/>
+        <result property="peopleIdTxt" column="peo2_name"/>
          <result property="productName" column="product_name"/>
          <result property="productCode" column="product_code"/>
          <result property="ceilLimit" column="ceil_limit"/>
@@ -33,7 +33,7 @@
 	<!-- 用于select查询公用抽取的列 -->
 	<sql id="Product.columns">
 	    <![CDATA[
-         pro.product_id , pro.cat_id , pro.people_id , pro.product_name , pro.product_code , pro.ceil_limit , pro.low_limit , pro.piny_code , pro.product_spec , pro.sale_price , pro.purchase_price , pro.is_available , pro.is_sellable , pro.is_negative , pro.is_purchasable , pro.product_image , pro.manufacturer , pro.orginal_place , pro.cTime  , cat.cate_name, peo.Name
+         pro0.product_id , pro0.cat_id , pro0.people_id , pro0.product_name , pro0.product_code , pro0.ceil_limit , pro0.low_limit , pro0.piny_code , pro0.product_spec , pro0.sale_price , pro0.purchase_price , pro0.is_available , pro0.is_sellable , pro0.is_negative , pro0.is_purchasable , pro0.product_image , pro0.manufacturer , pro0.orginal_place , pro0.cTime  , cat1.cate_name as cat1_catename, peo2.Name as peo2_name
         
 	    ]]>
 	</sql>
@@ -129,79 +129,71 @@
     <select id="Product.getById" resultMap="RM.Product">
 	    SELECT <include refid="Product.columns"/>
 	    <![CDATA[
-	        FROM product AS pro   Left Join category AS cat ON pro.cat_id=cat.cate_id  Left Join people AS peo ON pro.people_id=peo.PersonId
+	        FROM product AS pro0   Left Join category AS cat1 ON pro0.cat_id=cat1.cate_id  Left Join people AS peo2 ON pro0.people_id=peo2.PersonId
 	        WHERE 
-		        pro.product_id = #productId# 
+		        pro0.product_id = #productId# 
 	    ]]>
     </select>
 
 	<sql id="Product.findPage.where">
 	    <dynamic prepend="WHERE">
 		       <isNotEmpty prepend="AND" property="productId">
-		             product_id = #productId#
+		              pro0.product_id = #productId#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="catId">
-		             cat_id = #catId#
+		              pro0.cat_id = #catId#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="peopleId">
-		             people_id = #peopleId#
+		              pro0.people_id = #peopleId#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="productName">
-		             product_name = #productName#
+		              pro0.product_name = #productName#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="productCode">
-		             product_code = #productCode#
+		              pro0.product_code = #productCode#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="ceilLimit">
-		             ceil_limit = #ceilLimit#
+		              pro0.ceil_limit = #ceilLimit#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="lowLimit">
-		             low_limit = #lowLimit#
+		              pro0.low_limit = #lowLimit#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="pinyCode">
-		             piny_code = #pinyCode#
+		              pro0.piny_code = #pinyCode#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="productSpec">
-		             product_spec = #productSpec#
+		              pro0.product_spec = #productSpec#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="salePrice">
-		             sale_price = #salePrice#
+		              pro0.sale_price = #salePrice#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="purchasePrice">
-		             purchase_price = #purchasePrice#
+		              pro0.purchase_price = #purchasePrice#
 		       </isNotEmpty>
-		       <isNotEmpty prepend="AND" property="isAvailable">
-		             is_available = #isAvailable#
-		       </isNotEmpty>
-		       <isNotEmpty prepend="AND" property="isSellable">
-		             is_sellable = #isSellable#
-		       </isNotEmpty>
-		       <isNotEmpty prepend="AND" property="isNegative">
-		             is_negative = #isNegative#
-		       </isNotEmpty>
-		       <isNotEmpty prepend="AND" property="isPurchasable">
-		             is_purchasable = #isPurchasable#
-		       </isNotEmpty>
+		       <isNotEqual	prepend="AND" property="isAvailable" compareValue="-1">  pro0.is_available = #isAvailable#</isNotEqual>	
+		       <isNotEqual	prepend="AND" property="isSellable" compareValue="-2">  pro0.is_sellable = #isSellable#</isNotEqual>	
+		       <isNotEqual	prepend="AND" property="isNegative" compareValue="-1">  pro0.is_negative = #isNegative#</isNotEqual>	
+		       <isNotEqual	prepend="AND" property="isPurchasable" compareValue="-1">  pro0.is_purchasable = #isPurchasable#</isNotEqual>	
 		       <isNotEmpty prepend="AND" property="productImage">
-		             product_image = #productImage#
+		              pro0.product_image = #productImage#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="manufacturer">
-		             manufacturer = #manufacturer#
+		              pro0.manufacturer = #manufacturer#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="orginalPlace">
-		             orginal_place = #orginalPlace#
+		              pro0.orginal_place = #orginalPlace#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="ctimeBegin">
-		             cTime >= #ctimeBegin#
+		              pro0.cTime >= #ctimeBegin#
 		       </isNotEmpty>
 		       <isNotEmpty prepend="AND" property="ctimeEnd">
-		             cTime &lt;= #ctimeEnd#
+		              pro0.cTime &lt;= #ctimeEnd#
 		       </isNotEmpty>
 	    </dynamic>	
 	</sql>
 	 
     <select id="Product.findPage.count" resultClass="long">
-        SELECT count(*) FROM product <include refid="Product.findPage.where"/>    
+        SELECT count(*) FROM  product AS pro0 <include refid="Product.findPage.where"/>    
     </select>
     
     <!--
@@ -209,10 +201,10 @@
     	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
     -->
     <select id="Product.findPage" resultMap="RM.Product">
-    	SELECT <include refid="Product.columns"/> FROM product AS pro   Left Join category AS cat ON pro.cat_id=cat.cate_id  Left Join people AS peo ON pro.people_id=peo.PersonId
+    	SELECT <include refid="Product.columns"/> FROM product AS pro0   Left Join category AS cat1 ON pro0.cat_id=cat1.cate_id  Left Join people AS peo2 ON pro0.people_id=peo2.PersonId
 		<include refid="Product.findPage.where"/>
 		<isNotEmpty property="sortColumns">
-			ORDER BY pro.$sortColumns$
+			ORDER BY pro0.$sortColumns$
 		</isNotEmpty>
     </select>
 

@@ -32,10 +32,12 @@
 					<td class="tdLabel"><%=Product.ALIAS_CAT_ID%></td>		
 					<td>
 						<yun:button-edit name="catIdTxt" hiddenName="catId" id="product_catId" txtVal="${query.catIdTxt}"  hiddenVal="${query.catId}" width="130"  profileId="product"/> 
+						
 					</td>
 					<td class="tdLabel"><%=Product.ALIAS_PEOPLE_ID%></td>		
 					<td>
 						<yun:button-edit name="peopleIdTxt" hiddenName="peopleId" id="product_peopleId" txtVal="${query.peopleIdTxt}"  hiddenVal="${query.peopleId}" width="130"  profileId="product"/> 
+						
 					</td>
 					<td class="tdLabel"><%=Product.ALIAS_PRODUCT_NAME%></td>		
 					<td>
@@ -67,29 +69,45 @@
 				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_SALE_PRICE%></td>		
 					<td>
-						<input value="${query.salePrice}" id="salePrice" name="salePrice" maxlength="10"  class="validate-integer "/>
+						<input value="${query.salePrice}" id="salePrice" name="salePrice" maxlength="10"  class="validate-number "/>
 					</td>
 					<td class="tdLabel"><%=Product.ALIAS_PURCHASE_PRICE%></td>		
 					<td>
-						<input value="${query.purchasePrice}" id="purchasePrice" name="purchasePrice" maxlength="10"  class="validate-integer "/>
+						<input value="${query.purchasePrice}" id="purchasePrice" name="purchasePrice" maxlength="10"  class="validate-number "/>
 					</td>
 					<td class="tdLabel"><%=Product.ALIAS_IS_AVAILABLE%></td>		
 					<td>
-						<input value="${query.isAvailable}" id="isAvailable" name="isAvailable" maxlength="1"  class=""/>
+						<select name="isAvailable">
+							<option value="1" <c:if test="${query.isAvailable==1}">selected</c:if>>是</option>
+							<option value="0" <c:if test="${query.isAvailable==0}">selected</c:if>>否</option>
+							<option value="-1" <c:if test="${query.isAvailable==-1}">selected</c:if>>不限</option>
+						</select>
 					</td>
 					<td class="tdLabel"><%=Product.ALIAS_IS_SELLABLE%></td>		
 					<td>
-						<input value="${query.isSellable}" id="isSellable" name="isSellable" maxlength="1"  class=""/>
+						<select name="isSellable">
+							<option value="1" <c:if test="${query.isSellable==1}">selected</c:if>>是</option>
+							<option value="0" <c:if test="${query.isSellable==0}">selected</c:if>>否</option>
+							<option value="-2" <c:if test="${query.isSellable==-2}">selected</c:if>>不限</option>
+						</select>
 					</td>
 				</tr>	
 				<tr>	
 					<td class="tdLabel"><%=Product.ALIAS_IS_NEGATIVE%></td>		
 					<td>
-						<input value="${query.isNegative}" id="isNegative" name="isNegative" maxlength="1"  class=""/>
+						<select name="isNegative">
+							<option value="1" <c:if test="${query.isNegative==1}">selected</c:if>>是</option>
+							<option value="0" <c:if test="${query.isNegative==0}">selected</c:if>>否</option>
+							<option value="-1" <c:if test="${query.isNegative==-1}">selected</c:if>>不限</option>
+						</select>
 					</td>
 					<td class="tdLabel"><%=Product.ALIAS_IS_PURCHASABLE%></td>		
 					<td>
-						<input value="${query.isPurchasable}" id="isPurchasable" name="isPurchasable" maxlength="1"  class=""/>
+						<select name="isPurchasable">
+							<option value="1" <c:if test="${query.isPurchasable==1}">selected</c:if>>是</option>
+							<option value="0" <c:if test="${query.isPurchasable==0}">selected</c:if>>否</option>
+							<option value="-1" <c:if test="${query.isPurchasable==-1}">selected</c:if>>不限</option>
+						</select>
 					</td>
 					<td class="tdLabel"><%=Product.ALIAS_PRODUCT_IMAGE%></td>		
 					<td>
@@ -175,10 +193,10 @@
 				<td><c:out value='${item.productSpec}'/>&nbsp;</td>
 				<td><c:out value='${item.salePrice}'/>&nbsp;</td>
 				<td><c:out value='${item.purchasePrice}'/>&nbsp;</td>
-				<td><c:out value='${item.isAvailable}'/>&nbsp;</td>
-				<td><c:out value='${item.isSellable}'/>&nbsp;</td>
-				<td><c:out value='${item.isNegative}'/>&nbsp;</td>
-				<td><c:out value='${item.isPurchasable}'/>&nbsp;</td>
+				<td><c:choose><c:when test="${item.isAvailable==1}">是</c:when><c:when test="${item.isAvailable==0}">否</c:when></c:choose></td>
+				<td><c:choose><c:when test="${item.isSellable==1}">是</c:when><c:when test="${item.isSellable==0}">否</c:when></c:choose></td>
+				<td><c:choose><c:when test="${item.isNegative==1}">是</c:when><c:when test="${item.isNegative==0}">否</c:when></c:choose></td>
+				<td><c:choose><c:when test="${item.isPurchasable==1}">是</c:when><c:when test="${item.isPurchasable==0}">否</c:when></c:choose></td>
 				<td><c:out value='${item.productImage}'/>&nbsp;</td>
 				<td><c:out value='${item.manufacturer}'/>&nbsp;</td>
 				<td><c:out value='${item.orginalPlace}'/>&nbsp;</td>

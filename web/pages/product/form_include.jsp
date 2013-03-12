@@ -10,6 +10,7 @@
 		</td>		
 		<td>
 		<yun:button-edit name="catIdTxt" hiddenName="catId" id="product_catId" txtVal="${product.catIdTxt}"  hiddenVal="${product.catId}" width="130"  profileId="product"/> 
+	
 		<font color='red'><form:errors path="catId"/></font>
 		</td>
 	</tr>	
@@ -20,6 +21,7 @@
 		</td>		
 		<td>
 		<yun:button-edit name="peopleIdTxt" hiddenName="peopleId" id="product_peopleId" txtVal="${product.peopleIdTxt}"  hiddenVal="${product.peopleId}" width="130"  profileId="product"/> 
+	
 		<font color='red'><form:errors path="peopleId"/></font>
 		</td>
 	</tr>	
@@ -89,7 +91,7 @@
 			<%=Product.ALIAS_SALE_PRICE%>:
 		</td>		
 		<td>
-		<form:input path="salePrice" id="salePrice" cssClass="validate-integer " maxlength="10" />
+		<form:input path="salePrice" id="salePrice" cssClass="validate-number " maxlength="10" />
 		<font color='red'><form:errors path="salePrice"/></font>
 		</td>
 	</tr>	
@@ -99,7 +101,7 @@
 			<%=Product.ALIAS_PURCHASE_PRICE%>:
 		</td>		
 		<td>
-		<form:input path="purchasePrice" id="purchasePrice" cssClass="validate-integer " maxlength="10" />
+		<form:input path="purchasePrice" id="purchasePrice" cssClass="validate-number " maxlength="10" />
 		<font color='red'><form:errors path="purchasePrice"/></font>
 		</td>
 	</tr>	
@@ -109,7 +111,10 @@
 			<%=Product.ALIAS_IS_AVAILABLE%>:
 		</td>		
 		<td>
-		<form:input path="isAvailable" id="isAvailable" cssClass="" maxlength="1" />
+		<form:select path="isAvailable" id="isAvailable">
+			<form:option value="1" >是</form:option>
+			<form:option value="0" >否</form:option>
+		</form:select>
 		<font color='red'><form:errors path="isAvailable"/></font>
 		</td>
 	</tr>	
@@ -119,7 +124,10 @@
 			<%=Product.ALIAS_IS_SELLABLE%>:
 		</td>		
 		<td>
-		<form:input path="isSellable" id="isSellable" cssClass="" maxlength="1" />
+		<form:select path="isSellable" id="isSellable">
+			<form:option value="1" >是</form:option>
+			<form:option value="0" >否</form:option>
+		</form:select>
 		<font color='red'><form:errors path="isSellable"/></font>
 		</td>
 	</tr>	
@@ -129,7 +137,10 @@
 			<%=Product.ALIAS_IS_NEGATIVE%>:
 		</td>		
 		<td>
-		<form:input path="isNegative" id="isNegative" cssClass="" maxlength="1" />
+		<form:select path="isNegative" id="isNegative">
+			<form:option value="1" >是</form:option>
+			<form:option value="0" >否</form:option>
+		</form:select>
 		<font color='red'><form:errors path="isNegative"/></font>
 		</td>
 	</tr>	
@@ -139,7 +150,10 @@
 			<%=Product.ALIAS_IS_PURCHASABLE%>:
 		</td>		
 		<td>
-		<form:input path="isPurchasable" id="isPurchasable" cssClass="" maxlength="1" />
+		<form:select path="isPurchasable" id="isPurchasable">
+			<form:option value="1" >是</form:option>
+			<form:option value="0" >否</form:option>
+		</form:select>
 		<font color='red'><form:errors path="isPurchasable"/></font>
 		</td>
 	</tr>	

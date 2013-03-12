@@ -14,6 +14,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.github.springrest.base.JsonDateSerializer;
 
 import java.util.*;
 
@@ -73,6 +76,7 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	
 	
+	
 	private java.lang.Long productId;
 	
 	
@@ -89,6 +93,7 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	@Length(max=64)
 	
+	
 	private java.lang.String productName;
 	
 	
@@ -97,12 +102,14 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	@Length(max=64)
 	
+	
 	private java.lang.String productCode;
 	
 	
     /**
      * 库存上限       db_column: ceil_limit 
      */ 	
+	
 	
 	
 	private java.lang.Integer ceilLimit;
@@ -113,6 +120,7 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	
 	
+	
 	private java.lang.Integer lowLimit;
 	
 	
@@ -120,6 +128,7 @@ public class Product extends BaseEntity implements java.io.Serializable {
      * 拼音编码       db_column: piny_code 
      */ 	
 	@Length(max=64)
+	
 	
 	private java.lang.String pinyCode;
 	
@@ -129,6 +138,7 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	@Length(max=64)
 	
+	
 	private java.lang.String productSpec;
 	
 	
@@ -137,7 +147,8 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	
 	
-	private Long salePrice;
+	
+	private java.math.BigDecimal salePrice;
 	
 	
     /**
@@ -145,7 +156,8 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	
 	
-	private Long purchasePrice;
+	
+	private java.math.BigDecimal purchasePrice;
 	
 	
     /**
@@ -153,7 +165,8 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	
 	
-	private java.lang.Boolean isAvailable;
+	
+	private java.lang.Integer isAvailable;
 	
 	
     /**
@@ -161,7 +174,8 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	
 	
-	private java.lang.Boolean isSellable;
+	
+	private java.lang.Integer isSellable;
 	
 	
     /**
@@ -169,7 +183,8 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	
 	
-	private java.lang.Boolean isNegative;
+	
+	private java.lang.Integer isNegative;
 	
 	
     /**
@@ -177,13 +192,15 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	
 	
-	private java.lang.Boolean isPurchasable;
+	
+	private java.lang.Integer isPurchasable;
 	
 	
     /**
      * 产品图片       db_column: product_image 
      */ 	
 	@Length(max=256)
+	
 	
 	private java.lang.String productImage;
 	
@@ -193,6 +210,7 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	@Length(max=256)
 	
+	
 	private java.lang.String manufacturer;
 	
 	
@@ -200,6 +218,7 @@ public class Product extends BaseEntity implements java.io.Serializable {
      * 产地       db_column: orginal_place 
      */ 	
 	@Length(max=256)
+	
 	
 	private java.lang.String orginalPlace;
 	
@@ -209,6 +228,7 @@ public class Product extends BaseEntity implements java.io.Serializable {
      */ 	
 	
 	
+	@JsonSerialize(using = JsonDateSerializer.class)
 	private java.util.Date ctime;
 	
 	//columns END
@@ -299,46 +319,46 @@ public class Product extends BaseEntity implements java.io.Serializable {
 	public java.lang.String getProductSpec() {
 		return this.productSpec;
 	}
-	public void setSalePrice(Long value) {
+	public void setSalePrice(java.math.BigDecimal value) {
 		this.salePrice = value;
 	}
 	
-	public Long getSalePrice() {
+	public java.math.BigDecimal getSalePrice() {
 		return this.salePrice;
 	}
-	public void setPurchasePrice(Long value) {
+	public void setPurchasePrice(java.math.BigDecimal value) {
 		this.purchasePrice = value;
 	}
 	
-	public Long getPurchasePrice() {
+	public java.math.BigDecimal getPurchasePrice() {
 		return this.purchasePrice;
 	}
-	public void setIsAvailable(java.lang.Boolean value) {
+	public void setIsAvailable(java.lang.Integer value) {
 		this.isAvailable = value;
 	}
 	
-	public java.lang.Boolean getIsAvailable() {
+	public java.lang.Integer getIsAvailable() {
 		return this.isAvailable;
 	}
-	public void setIsSellable(java.lang.Boolean value) {
+	public void setIsSellable(java.lang.Integer value) {
 		this.isSellable = value;
 	}
 	
-	public java.lang.Boolean getIsSellable() {
+	public java.lang.Integer getIsSellable() {
 		return this.isSellable;
 	}
-	public void setIsNegative(java.lang.Boolean value) {
+	public void setIsNegative(java.lang.Integer value) {
 		this.isNegative = value;
 	}
 	
-	public java.lang.Boolean getIsNegative() {
+	public java.lang.Integer getIsNegative() {
 		return this.isNegative;
 	}
-	public void setIsPurchasable(java.lang.Boolean value) {
+	public void setIsPurchasable(java.lang.Integer value) {
 		this.isPurchasable = value;
 	}
 	
-	public java.lang.Boolean getIsPurchasable() {
+	public java.lang.Integer getIsPurchasable() {
 		return this.isPurchasable;
 	}
 	public void setProductImage(java.lang.String value) {

@@ -48,7 +48,7 @@ public class CategoryQuery extends BaseQuery implements Serializable {
 	/** cateName */
 	private java.lang.String cateName;
 	/** 是否有效 */
-	private java.lang.Boolean isAvailable;
+	private java.lang.Integer isAvailable=-1;
 	/** 创建时间 */
 	private java.util.Date ctimeBegin;
 	private java.util.Date ctimeEnd;
@@ -88,11 +88,11 @@ public class CategoryQuery extends BaseQuery implements Serializable {
 		this.cateName = value;
 	}
 	
-	public java.lang.Boolean getIsAvailable() {
+	public java.lang.Integer getIsAvailable() {
 		return this.isAvailable;
 	}
 	
-	public void setIsAvailable(java.lang.Boolean value) {
+	public void setIsAvailable(java.lang.Integer value) {
 		this.isAvailable = value;
 	}
 	

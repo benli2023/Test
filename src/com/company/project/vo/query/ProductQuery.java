@@ -61,17 +61,17 @@ public class ProductQuery extends BaseQuery implements Serializable {
 	/** 规格型号 */
 	private java.lang.String productSpec;
 	/** 预设售价 */
-	private Long salePrice;
+	private java.math.BigDecimal salePrice;
 	/** 预设进价 */
-	private Long purchasePrice;
+	private java.math.BigDecimal purchasePrice;
 	/** 是否有效 */
-	private java.lang.Boolean isAvailable;
+	private java.lang.Integer isAvailable=-1;
 	/** 是否可卖 */
-	private java.lang.Boolean isSellable;
+	private java.lang.Integer isSellable=-2;
 	/** 是否允许负库存 */
-	private java.lang.Boolean isNegative;
+	private java.lang.Integer isNegative=-1;
 	/** 是否允许采购 */
-	private java.lang.Boolean isPurchasable;
+	private java.lang.Integer isPurchasable=-1;
 	/** 产品图片 */
 	private java.lang.String productImage;
 	/** 生产商 */
@@ -172,51 +172,51 @@ public class ProductQuery extends BaseQuery implements Serializable {
 		this.productSpec = value;
 	}
 	
-	public Long getSalePrice() {
+	public java.math.BigDecimal getSalePrice() {
 		return this.salePrice;
 	}
 	
-	public void setSalePrice(Long value) {
+	public void setSalePrice(java.math.BigDecimal value) {
 		this.salePrice = value;
 	}
 	
-	public Long getPurchasePrice() {
+	public java.math.BigDecimal getPurchasePrice() {
 		return this.purchasePrice;
 	}
 	
-	public void setPurchasePrice(Long value) {
+	public void setPurchasePrice(java.math.BigDecimal value) {
 		this.purchasePrice = value;
 	}
 	
-	public java.lang.Boolean getIsAvailable() {
+	public java.lang.Integer getIsAvailable() {
 		return this.isAvailable;
 	}
 	
-	public void setIsAvailable(java.lang.Boolean value) {
+	public void setIsAvailable(java.lang.Integer value) {
 		this.isAvailable = value;
 	}
 	
-	public java.lang.Boolean getIsSellable() {
+	public java.lang.Integer getIsSellable() {
 		return this.isSellable;
 	}
 	
-	public void setIsSellable(java.lang.Boolean value) {
+	public void setIsSellable(java.lang.Integer value) {
 		this.isSellable = value;
 	}
 	
-	public java.lang.Boolean getIsNegative() {
+	public java.lang.Integer getIsNegative() {
 		return this.isNegative;
 	}
 	
-	public void setIsNegative(java.lang.Boolean value) {
+	public void setIsNegative(java.lang.Integer value) {
 		this.isNegative = value;
 	}
 	
-	public java.lang.Boolean getIsPurchasable() {
+	public java.lang.Integer getIsPurchasable() {
 		return this.isPurchasable;
 	}
 	
-	public void setIsPurchasable(java.lang.Boolean value) {
+	public void setIsPurchasable(java.lang.Integer value) {
 		this.isPurchasable = value;
 	}
 	

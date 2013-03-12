@@ -86,7 +86,7 @@ public class Category extends BaseEntity implements java.io.Serializable {
 	
 	
 	
-	private java.lang.Boolean isAvailable;
+	private java.lang.Integer isAvailable;
 	
 	
     /**
@@ -145,11 +145,11 @@ public class Category extends BaseEntity implements java.io.Serializable {
 	public java.lang.String getCateName() {
 		return this.cateName;
 	}
-	public void setIsAvailable(java.lang.Boolean value) {
+	public void setIsAvailable(java.lang.Integer value) {
 		this.isAvailable = value;
 	}
 	
-	public java.lang.Boolean getIsAvailable() {
+	public java.lang.Integer getIsAvailable() {
 		return this.isAvailable;
 	}
 	public String getCtimeString() {

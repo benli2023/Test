@@ -32,6 +32,7 @@
 					<td class="tdLabel"><%=Category.ALIAS_PARENT_ID%></td>		
 					<td>
 						<yun:button-edit name="parentIdTxt" hiddenName="parentId" id="category_parentId" txtVal="${query.parentIdTxt}"  hiddenVal="${query.parentId}" width="130"  profileId="category"/> 
+						
 					</td>
 					<td class="tdLabel"><%=Category.ALIAS_CATE_NAME%></td>		
 					<td>
@@ -39,7 +40,11 @@
 					</td>
 					<td class="tdLabel"><%=Category.ALIAS_IS_AVAILABLE%></td>		
 					<td>
-						<input value="${query.isAvailable}" id="isAvailable" name="isAvailable" maxlength="1"  class=""/>
+						<select name="isAvailable">
+							<option value="1" <c:if test="${query.isAvailable==1}">selected</c:if>>是</option>
+							<option value="0" <c:if test="${query.isAvailable==0}">selected</c:if>>否</option>
+							<option value="-1" <c:if test="${query.isAvailable==-1}">selected</c:if>>不限</option>
+						</select>
 					</td>
 					<td class="tdLabel"><%=Category.ALIAS_CTIME%></td>		
 					<td>
@@ -96,7 +101,7 @@
 				
 				<td><c:out value='${item.parentIdTxt}'/>&nbsp;</td>
 				<td><c:out value='${item.cateName}'/>&nbsp;</td>
-				<td><c:out value='${item.isAvailable}'/>&nbsp;</td>
+				<td><c:choose><c:when test="${item.isAvailable==1}">是</c:when><c:when test="${item.isAvailable==0}">否</c:when></c:choose></td>
 				<td><c:out value='${item.ctimeString}'/>&nbsp;</td>
 				<td><c:out value='${item.admin}'/>&nbsp;</td>
 				<td>

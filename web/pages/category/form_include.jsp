@@ -10,6 +10,7 @@
 		</td>		
 		<td>
 		<yun:button-edit name="parentIdTxt" hiddenName="parentId" id="category_parentId" txtVal="${category.parentIdTxt}"  hiddenVal="${category.parentId}" width="130"  profileId="category"/> 
+	
 		<font color='red'><form:errors path="parentId"/></font>
 		</td>
 	</tr>	
@@ -29,7 +30,10 @@
 			<%=Category.ALIAS_IS_AVAILABLE%>:
 		</td>		
 		<td>
-		<form:input path="isAvailable" id="isAvailable" cssClass="" maxlength="1" />
+		<form:select path="isAvailable" id="isAvailable">
+			<form:option value="1" >是</form:option>
+			<form:option value="0" >否</form:option>
+		</form:select>
 		<font color='red'><form:errors path="isAvailable"/></font>
 		</td>
 	</tr>	
