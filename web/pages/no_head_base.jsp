@@ -1,2 +1,2 @@
-<%@ include file="../no_js_base.jsp"  %>
+<%@ include file="../commons/no_js_base.jsp"  %>
 
